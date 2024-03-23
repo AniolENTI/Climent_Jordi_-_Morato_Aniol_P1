@@ -90,7 +90,7 @@ Shader"ENTI/P1_Water"
                 //float2 NoiseUV = float2((v.uv.xy + _Time * ))
                
                 float3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
-                float2 displacetex = ((o.uv * _NoiseScale) * _HeightBias) + _HeightMultiplier;
+                float2 displacetex = ((o.uv * (_NoiseMovement.x * _NoiseScale)) * _HeightBias) + _HeightMultiplier;
 
                 
                 v.vertex.xyz += unity_gradientNoise(displacetex);
