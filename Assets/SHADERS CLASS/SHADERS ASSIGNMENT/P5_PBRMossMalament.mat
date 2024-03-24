@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: P5_PBRMoss
-  m_Shader: {fileID: 4800000, guid: e68efa74499f77047a306a9fdf316c2e, type: 3}
+  m_Name: P5_PBRMossMalament
+  m_Shader: {fileID: 4800000, guid: 1cb78f2a8fc1d214aa94262764aedd11, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -98,7 +98,7 @@ Material:
     - _PulsePower: 1
     - _Roughness: 0
     - _ShadowStrength: 0.75
-    - _Sharpness: 0.001
+    - _Sharpness: 2.1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
