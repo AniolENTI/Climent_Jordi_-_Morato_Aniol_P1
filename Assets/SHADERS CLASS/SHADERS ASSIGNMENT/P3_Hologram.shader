@@ -3,6 +3,7 @@ Shader "ENTI/P3_Hologram"
     Properties
     {
         _Color("Color", Color) = (1,1,1,1)
+        [HDR] _FresnelColor("Fresnel Color", Color) = (1,0,1,1)
         _Power("Power", float) = 1.0
         [Enum(UnityEngine.Rendering.BlendMode)]
         _SrcFactor("Src Factor", float) = 5
@@ -40,7 +41,7 @@ Shader "ENTI/P3_Hologram"
                     half3 viewdir : TEXCOORD0;
                 };
 
-                fixed4 _Color;
+                fixed4 _Color, _FresnelColor;
                 float _Power;
 
                 v2f vert(appdata v)
@@ -59,19 +60,20 @@ Shader "ENTI/P3_Hologram"
                 fixed4 frag(v2f i) : SV_Target
                 {
                     fixed4 col;
-                //col.xyz = i.normal;
-                //col.xyz = -i.viewdir;
-                float fresnel = saturate(dot(i.normal, i.viewdir));
-                fresnel = saturate(1 - fresnel);
-                fresnel = pow(fresnel, _Power);
-                //col.xyz = fresnel.xxx;
-                fixed4 fresnelColor = fresnel * _Color;
-                col = fresnelColor;
+                    //col.xyz = i.normal;
+                    //col.xyz = -i.viewdir;
+                    float fresnel = saturate(dot(i.normal, i.viewdir));
+                    fresnel = saturate(1 - fresnel);
+                    fresnel = pow(fresnel, _Power);
+                    fresnel *= _FresnelColor;
+                    //col.xyz = fresnel.xxx;
+                    fixed4 fresnelColor = fresnel * _Color;
+                    col = fresnelColor;
 
 
-                return col;
-            }
-            ENDCG
-        }
+                    return col;
+                }
+                ENDCG
+            }   
         }
 }
